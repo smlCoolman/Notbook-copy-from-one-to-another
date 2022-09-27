@@ -1,0 +1,33 @@
+Sub Button1_Click()
+Dim Wb1 As Workbook
+Dim strFile As String
+Dim MainFile As String
+
+'Main sheet is called Main.xlsm. Change it to what book is being used here
+MainFile = "Main.xlsm"
+ 
+'Dont update the screen - makes it work faster
+Application.ScreenUpdating = False
+
+'Opens Dialog box to pick the file
+strFile = Application.GetOpenFilename(FileFilter:="Excel files (*.xlsm*), *.xlsm*", Title:="Choose an Excel file to open")
+
+'Opens chosen workbook
+Set Wb1 = Workbooks.Open(strFile)
+
+'Make it Dance for you here
+
+'Copy to Clipboard
+Wb1.Worksheets("Sheet1").Range("A1").Copy
+
+'Paste from clipboard
+Workbooks(MainFile).Worksheets("Sheet1").Range("A2").PasteSpecial
+
+ 
+'Close the workbook from which we just got some data and make sure not to save it in case accidental changes were made to it.
+Wb1.Close SaveChanges:=False
+
+'Turn on screen updating again - makes Excel usable
+Application.ScreenUpdating = True
+
+End Sub
