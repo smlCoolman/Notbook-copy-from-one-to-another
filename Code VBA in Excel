@@ -4,7 +4,7 @@ Dim strFile As String
 Dim MainFile As String
 
 'Main sheet is called Main.xlsm. Change it to what book is being used here
-MainFile = "Main.xlsm"
+MainFile = ThisWorkbook.Name
  
 'Dont update the screen - makes it work faster
 Application.ScreenUpdating = False
